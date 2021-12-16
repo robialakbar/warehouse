@@ -17,9 +17,13 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes(['register' => false, 'reset' => false, 'verify' => false]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/stock-out', 'HomeController@stockOut');
 Route::get('/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search');
 Route::prefix('products')->group(function () {
     Route::get('', [App\Http\Controllers\ProductController::class, 'products'])->name('products');
+	Route::get('/defect', 'HomeController@defect');
+	Route::post('/defect/store', 'ProductController@defectStore');
+    Route::post('hapus-checkbox', [App\Http\Controllers\ProductController::class, 'deleteCheckbox']);
     Route::post('', [App\Http\Controllers\ProductController::class, 'product_save'])->name('products.save');
     Route::delete('', [App\Http\Controllers\ProductController::class, 'product_delete'])->name('products.delete')->middleware('adminRole');
     Route::get('wip', [App\Http\Controllers\ProductController::class, 'products_wip'])->name('products.wip');
@@ -28,7 +32,8 @@ Route::prefix('products')->group(function () {
     Route::post('wip/complete', [App\Http\Controllers\ProductController::class, 'product_wip_complete'])->name('products.wip.complete');
     Route::get('wipHistory', [App\Http\Controllers\ProductController::class, 'products_wip_history'])->name('products.wip.history');
     Route::get('/check/{pcode}', [App\Http\Controllers\ProductController::class, 'product_check'])->name('products.check');
-    Route::post('/stockUpdate', [App\Http\Controllers\ProductController::class, 'product_stock'])->name('products.stock');
+    // Route::post('/stockUpdate', [App\Http\Controllers\ProductController::class, 'product_stock'])->name('products.stock');
+    Route::post('/stockUpdate', [App\Http\Controllers\ProductController::class, 'product_stock2'])->name('products.stock');
     Route::get('/stockHistory', [App\Http\Controllers\ProductController::class, 'product_stock_history'])->name('products.stock.history');
     Route::get('categories', [App\Http\Controllers\ProductController::class, 'categories'])->name('products.categories');
     Route::post('categories', [App\Http\Controllers\ProductController::class, 'categories_save'])->name('products.categories.save')->middleware('adminRole');

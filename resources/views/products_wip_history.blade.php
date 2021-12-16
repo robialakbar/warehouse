@@ -40,7 +40,9 @@
                                 <th>{{ __('Product Name') }}</th>
                                 <th>{{ __('Amount') }}</th>
                                 <th>{{ __('Date In') }}</th>
+                                <th>{{ __('Scan Product In By') }}</th>
                                 <th>{{ __('Date Out') }}</th>
+                                <th>{{ __('Scan Product Out By') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,7 +65,9 @@
                                 <td>{{ $data['pname'] }}</td>
                                 <td class="text-center">{{ $data['pamount'] }}</td>
                                 <td class="text-center">{{ $data['date_in'] }}</td>
+                                <td class="text-center">{{ $d->getUserCreate->name }}</td>
                                 <td class="text-center">{{ $data['date_out'] }}</td>
+                                <td class="text-center">{{ $d->getUserUpdate->name }}</td>
                             </tr>
                             @endforeach
                         @else

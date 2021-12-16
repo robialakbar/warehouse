@@ -31,7 +31,8 @@
                 </a>
             </div>
             <div class="col-lg-3 col-6">
-                <a href="#" data-toggle="modal" data-target="#stock-form" onclick="stockForm(0)">
+                {{-- <a href="#" data-toggle="modal" data-target="#stock-form" onclick="stockForm(0)"> --}}
+                <a href="{{ action('HomeController@stockOut') }}" >
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <p>Stock</p>
@@ -62,6 +63,19 @@
                         <div class="inner">
                             <p>Stock</p>
                             <h3>History</h3>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>  
+            <div class="col-lg-3 col-6">
+                 <a href="{{ action('HomeController@defect') }}" >
+                    <div class="small-box bg-navy color-palette">
+                        <div class="inner">
+                            <p>Product</p>
+                            <h3>Defect</h3>
                         </div>
                         <div class="icon">
                             <i class="fas fa-history"></i>

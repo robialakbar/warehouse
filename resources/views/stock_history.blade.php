@@ -51,6 +51,7 @@
                                 <th>{{ __('Stock In') }}</th>
                                 <th>{{ __('Stock Out') }}</th>
                                 <th>{{ __('Retur') }}</th>
+                                <th>{{ __('Defect') }}</th>
                                 <th>{{ __('Sisa') }}</th>
                                 <th>{{ __('Satuan') }}</th>
                             </tr>
@@ -63,14 +64,22 @@
                                         $in     = "";
                                         $out    = $d->product_amount;
                                         $retur  = "";
+                                        $defect  = "";
                                     } else if($d->type == 1){
                                         $in     = $d->product_amount;
                                         $out    = "";
                                         $retur  = "";
-                                    } else {
+                                        $defect  = "";
+                                    } else if($d->type == 2){
                                         $in     = "";
                                         $out    = "";
                                         $retur  = $d->product_amount;
+                                        $defect  = "";
+                                    }else {
+                                        $in     = "";
+                                        $out    = "";
+                                        $retur  = "";
+                                        $defect  = $d->product_amount;
                                     }
 
                                 @endphp
@@ -85,6 +94,7 @@
                                     <td class="text-center">{{ $in }}</td>
                                     <td class="text-center">{{ $out }}</td>
                                     <td class="text-center">{{ $retur }}</td>
+                                    <td class="text-center">{{ $defect }}</td>
                                     <td class="text-center">{{ $d->ending_amount }}</td>
                                     <td class="text-center">{{ $d->sale_price }}</td>
                                 </tr>

@@ -42,12 +42,13 @@ class UserController extends Controller
     }
 
     public function user_save(Request $req){
+
         $user_id = $req->user_id;
 
         $req->validate([
             'fullname'      => 'required|min:3',
             'username'      => 'required|min:3|unique:users,username,'.$req->user_id,
-            'password'      => 'required|min:6',
+            'password'      => 'nullable|min:6',
             'role'          => 'required',
             
         ],
@@ -62,12 +63,19 @@ class UserController extends Controller
             'role.required'         => 'Role belum dipilih!',
         ]);
 
+
         $data = [
             "name"      => $req->fullname,
             "username"  => $req->username,
-            "password"  => Hash::make($req->password),
             "role"      => $req->role,
+            "is_show"      => $req->is_show,
+            "is_delete"      => $req->is_delete,
         ];
+        
+        
+        if(!empty($req->password)){
+        	    $data["password"]  = Hash::make($req->password);
+        }
 
         if(empty($user_id)){
             $add = DB::table('users')->insertGetId($data);

@@ -38,6 +38,7 @@ class HistoryExport implements FromCollection, WithHeadings, ShouldAutoSize, Wit
             'STOCK IN',
             'STOCK OUT',
             'RETUR',
+            'DEFECT',
             'SISA',
             'SATUAN (RP)',
         ];
